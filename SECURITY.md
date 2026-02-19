@@ -41,14 +41,18 @@ Updated all dependencies with known security vulnerabilities to their patched ve
 
 ---
 
-### 3. Pillow (10.2.0 → 10.3.0)
+### 3. Pillow (10.2.0 → 12.1.1)
 
 **CVE Details:**
 - **Buffer Overflow**: Buffer overflow vulnerability in image processing
   - Affected: < 10.3.0
   - Fixed: 10.3.0
 
-**Impact**: High - Could lead to arbitrary code execution
+- **Out-of-Bounds Write in PSD Loading**: Memory corruption when loading PSD images
+  - Affected: >= 10.3.0, < 12.1.1
+  - Fixed: 12.1.1
+
+**Impact**: High - Could lead to arbitrary code execution or memory corruption
 
 ---
 
@@ -77,7 +81,7 @@ Updated all dependencies with known security vulnerabilities to their patched ve
 # requirements.txt updates
 fastapi==0.109.1           # was 0.109.0
 aiohttp==3.13.3           # was 3.9.1
-Pillow==10.3.0            # was 10.2.0
+Pillow==12.1.1            # was 10.2.0 → 10.3.0 → 12.1.1
 python-multipart==0.0.22  # was 0.0.6
 ```
 
@@ -121,7 +125,7 @@ Expected output:
 ```
 aiohttp           3.13.3
 fastapi           0.109.1
-Pillow            10.3.0
+Pillow            12.1.1
 python-multipart  0.0.22
 ```
 
@@ -154,8 +158,10 @@ pip list --outdated
 
 ## Timeline
 
-- **2024-02-19**: Vulnerabilities identified
-- **2024-02-19**: Dependencies updated to patched versions
+- **2024-02-19 (Initial)**: 8 vulnerabilities identified
+- **2024-02-19 (Initial)**: Dependencies updated to patched versions
+- **2024-02-19 (Update)**: Additional Pillow vulnerability identified
+- **2024-02-19 (Update)**: Pillow updated to 12.1.1 (final patch)
 - **2024-02-19**: Security advisory published
 
 ---
